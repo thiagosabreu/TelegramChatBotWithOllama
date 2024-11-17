@@ -40,11 +40,8 @@ api.key=[token da api]
 
 2. Envie uma mensagem e veja o chatbot interagir com você enquanto analisa o tom das suas palavras.
 
-
+---
 
 🐈‍⬛ Converse com o Chococat aqui!
 
-
-
-
----
+[![Telegram](https://img.shields.io/badge/Telegram-black?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/chocolstcatbot)
