@@ -18,20 +18,18 @@ public class Ollama {
         this.sentimentAnalysis = new SentimentAnalysis(analysisUrl, analysisKey);
     }
 
-    public String getOllamaResponse(String prompt, boolean analyzeSentiment) throws IOException, OllamaBaseException, InterruptedException {
+    public String getOllamaResponse(String prompt) throws IOException, OllamaBaseException, InterruptedException {
         OllamaAPI ollamaAPI = new OllamaAPI(host);
         OllamaResult result;
 
         ollamaAPI.setRequestTimeoutSeconds(200);
 
-        if (analyzeSentiment) {
-            String analyseSentimentResponse = sentimentAnalysis.analyzeSentiment(prompt);
-            if (analyseSentimentResponse != null) {
-                String promptComAnalise = "Texto para ser analisado: " + prompt + "\n\nAnalise do texto: " + analyseSentimentResponse;
-                result = ollamaAPI.generate("gemma2:2b", promptComAnalise, true, new OptionsBuilder().build());
-                return analyseSentimentResponse + "\n\n\n" + result.getResponse();
-            }
-        } 
+        String analyseSentimentResponse = sentimentAnalysis.analyzeSentiment(prompt);
+        if (analyseSentimentResponse != null) {
+            String promptComAnalise = "Texto para ser analisado: " + prompt + "\n\nAnalise do texto: " + analyseSentimentResponse;
+            result = ollamaAPI.generate("gemma2:2b", promptComAnalise, true, new OptionsBuilder().build());
+            return analyseSentimentResponse + "\n\n\n" + result.getResponse();
+        }
         result = ollamaAPI.generate("gemma2:2b", prompt, true, new OptionsBuilder().build());
         return result.getResponse();
     }
