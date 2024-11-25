@@ -22,7 +22,7 @@ public class Ollama {
         OllamaAPI ollamaAPI = new OllamaAPI(host);
         OllamaResult result;
 
-        ollamaAPI.setRequestTimeoutSeconds(200);
+        ollamaAPI.setRequestTimeoutSeconds(1500);
 
         String analyseSentimentResponse = sentimentAnalysis.analyzeSentiment(prompt);
         if (analyseSentimentResponse != null) {
